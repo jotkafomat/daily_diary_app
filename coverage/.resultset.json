@@ -1,0 +1,47 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/kamacbook/Documents/Makers/daily_diary_app/spec/diary_entries_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/kamacbook/Documents/Makers/daily_diary_app/spec/features/hello_wrold_spec.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/Users/kamacbook/Documents/Makers/daily_diary_app/spec/features/viewing_diary_entries_spec.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null
+        ]
+      }
+    },
+    "timestamp": 1603137647
+  }
+}
