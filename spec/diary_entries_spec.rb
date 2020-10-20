@@ -1,6 +1,7 @@
 require 'diary_entries'
 
 describe DiaryEntries do
+
   describe '.all' do
     it 'returns all diary entries' do
       connection = PG.connect(dbname: 'daily_diary_manager_test')
@@ -16,4 +17,14 @@ describe DiaryEntries do
       expect(diary_entries).to include("Third diary entries")
     end
   end
+
+  describe '.create' do
+    it 'creates a new diary entry' do
+      DiaryEntries.create(content: 'test diary entry')
+
+      expect(DiaryEntries.all).to include 'test diary entry'
+    end
+  end
+
+
 end
