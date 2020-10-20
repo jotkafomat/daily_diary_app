@@ -1,10 +1,11 @@
+require 'pg'
+
 class DiaryEntries
 
   def self.all
-    [ "First diary entries",
-      "Second diary entries",
-      "Third diary entries"
-    ]
+    connection = PG.connect(dbname: 'daily_diary_manager')
+    result = connection.exec("SELECT * FROM diary_entries;")
+    result.map { |entry| entry['content']}
   end
 
 end
