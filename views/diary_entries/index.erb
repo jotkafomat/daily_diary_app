@@ -1,5 +1,9 @@
 <ol>
   <% @diary_entries.each do |diary_entry| %>
-    <li><%= diary_entry.title %></li>
-    <% end %>
+  <li>
+    <a href='/diary_entries/<%= diary_entry.id %>'>
+      <%= diary_entry.title %>
+    </a>
+  </li>
+<% end %>
 </ol>

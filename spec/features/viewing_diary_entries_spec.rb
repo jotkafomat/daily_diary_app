@@ -1,6 +1,6 @@
 require 'pg'
 
-feature ' Viewing diary entries' do
+feature ' Viewing diary entries list' do
   scenario 'A user can see diary entries' do
 
     DiaryEntries.create(content: 'First diary entries', title: 'First Title')
@@ -12,5 +12,15 @@ feature ' Viewing diary entries' do
     expect(page).to have_content "First Title"
     expect(page).to have_content "Second Title"
     expect(page).to have_content "Third Title"
+  end
+
+  scenario 'A user can click on the title a see a content fo diary entry' do
+
+    DiaryEntries.create(content: 'First diary entries', title: 'First Title')
+
+    visit('/diary_entries')
+    click_on "First Title"
+    expect(page).to have_content('First diary entries')
+
   end
 end
