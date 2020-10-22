@@ -2,6 +2,8 @@ require 'sinatra/base'
 require './lib/diary_entries.rb'
 
 class DailyDiaryManager < Sinatra::Base
+  enable :sessions, :method_override
+
   get '/' do
     "Hello, world!"
   end
@@ -23,6 +25,12 @@ class DailyDiaryManager < Sinatra::Base
   get "/diary_entries/:id" do
     @diary_entry = DiaryEntries.selecting(params["id"])
     erb :'diary_entries/view_entry'
+  end
+
+  delete '/diary_entries/:id' do
+    connection = PG.connect(dbname: 'daily_diary_manager_test')
+    connection.exec("DELETE FROM diary_entries WHERE id = #{params['id']}")
+    redirect '/diary_entries'
   end
 
   run! if app_file == $0

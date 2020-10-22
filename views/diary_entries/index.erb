@@ -1,9 +1,12 @@
 <ol>
   <% @diary_entries.each do |diary_entry| %>
-  <li>
-    <a href='/diary_entries/<%= diary_entry.id %>'>
+  <li class="diary_entry" id="diary_entry-<%= diary_entry.id %>">
+    <a href='/diary_entries/<%= diary_entry.id %>' target="_blank">
       <%= diary_entry.title %>
     </a>
+    <form action="/diary_entries/<%= diary_entry.id %>" method="post">
+      <input type='hidden' name='_method' value='Delete'/>
+    <input type="submit" value="Delete" />
   </li>
 <% end %>
 </ol>
