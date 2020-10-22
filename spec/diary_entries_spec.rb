@@ -1,4 +1,5 @@
 require 'diary_entries'
+require 'database_helpers'
 
 describe DiaryEntries do
 
@@ -24,10 +25,10 @@ describe DiaryEntries do
     it 'creates a new diary entry' do
       entry = DiaryEntries.create(content: 'test diary entry', title: 'Test title')
 
-      persisted_data = PG.connect(dbname: 'daily_diary_manager_test').query("SELECT * FROM diary_entries WHERE id = #{entry.id};")
+      persisted_data = persisted_data(id: entry.id)
 
       expect(entry).to be_a DiaryEntries
-      expect(entry.id).to eq persisted_data.first['id']
+      expect(entry.id).to eq persisted_data['id']
       expect(entry.title).to eq 'Test title'
       expect(entry.content).to eq 'test diary entry'
     end
