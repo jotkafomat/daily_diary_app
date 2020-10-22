@@ -14,13 +14,13 @@ class DiaryEntries
     result.map { |entry| entry['content']}
   end
 
-  def self.create(content:)
+  def self.create(content:, title:)
     if ENV['ENVIRONMENT'] == 'test'
       connection = PG.connect(dbname: 'daily_diary_manager_test')
     else
       connection = PG.connect(dbname: 'daily_diary_manager')
     end
 
-    connection.exec("INSERT INTO diary_entries (content) VALUES('#{content}')")
+    connection.exec("INSERT INTO diary_entries (title, content) VALUES('#{title}', '#{content}') RETURNING id, content, title")
   end
 end

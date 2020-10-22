@@ -20,9 +20,10 @@ describe DiaryEntries do
 
   describe '.create' do
     it 'creates a new diary entry' do
-      DiaryEntries.create(content: 'test diary entry')
+      entry = DiaryEntries.create(content: 'test diary entry', title: 'Test title').first
 
-      expect(DiaryEntries.all).to include 'test diary entry'
+      expect(entry['content']).to eq 'test diary entry'
+      expect(entry['title']).to eq 'Test title'
     end
   end
 
