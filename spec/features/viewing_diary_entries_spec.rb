@@ -9,8 +9,8 @@ feature ' Viewing diary entries' do
 
     visit('/diary_entries')
 
-    expect(page).to have_content "First diary entries"
-    expect(page).to have_content "Second diary entries"
-    expect(page).to have_content "Third diary entries"
+    expect(page).to have_content "First Title"
+    expect(page).to have_content "Second Title"
+    expect(page).to have_content "Third Title"
   end
 end

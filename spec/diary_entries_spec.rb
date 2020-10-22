@@ -4,28 +4,33 @@ describe DiaryEntries do
 
   describe '.all' do
     it 'returns all diary entries' do
-      connection = PG.connect(dbname: 'daily_diary_manager_test')
+
       # Add the test data
-      connection.exec("INSERT INTO diary_entries (content) VALUES ('First diary entries');")
-      connection.exec("INSERT INTO diary_entries (content) VALUES ('Second diary entries');")
-      connection.exec("INSERT INTO diary_entries (content) VALUES ('Third diary entries');")
+      diary_entry = DiaryEntries.create(content: 'First diary entries', title: 'First Title')
+      DiaryEntries.create(content: 'Second diary entries', title: 'Second Title')
+      DiaryEntries.create(content: 'Third diary entries', title: 'Third Title')
 
       diary_entries = DiaryEntries.all
 
-      expect(diary_entries).to include("First diary entries")
-      expect(diary_entries).to include("Second diary entries")
-      expect(diary_entries).to include("Third diary entries")
+      expect(diary_entries.length).to eq 3
+      expect(diary_entries.first).to be_a DiaryEntries
+      expect(diary_entries.first.id).to eq diary_entry.id
+      expect(diary_entries.first.title).to eq diary_entry.title
+      expect(diary_entries.first.content).to eq diary_entry.content
     end
   end
 
   describe '.create' do
     it 'creates a new diary entry' do
-      entry = DiaryEntries.create(content: 'test diary entry', title: 'Test title').first
+      entry = DiaryEntries.create(content: 'test diary entry', title: 'Test title')
 
-      expect(entry['content']).to eq 'test diary entry'
-      expect(entry['title']).to eq 'Test title'
+      persisted_data = PG.connect(dbname: 'daily_diary_manager_test').query("SELECT * FROM diary_entries WHERE id = #{entry.id};")
+
+      expect(entry).to be_a DiaryEntries
+      expect(entry.id).to eq persisted_data.first['id']
+      expect(entry.title).to eq 'Test title'
+      expect(entry.content).to eq 'test diary entry'
     end
   end
-
 
 end

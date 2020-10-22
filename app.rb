@@ -20,6 +20,5 @@ class DailyDiaryManager < Sinatra::Base
     redirect '/diary_entries'
   end
 
-
   run! if app_file == $0
 end

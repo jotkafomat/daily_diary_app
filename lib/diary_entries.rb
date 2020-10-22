@@ -2,6 +2,14 @@ require 'pg'
 
 class DiaryEntries
 
+  attr_reader :id, :title, :content
+
+  def initialize(id:, title:, content:)
+    @id = id
+    @title = title
+    @content = content
+  end
+
   def self.all
 
     if ENV['ENVIRONMENT'] == 'test'
@@ -11,7 +19,9 @@ class DiaryEntries
     end
 
     result = connection.exec("SELECT * FROM diary_entries;")
-    result.map { |entry| entry['content']}
+    result.map { |entry|
+      DiaryEntries.new(id: entry['id'], title: entry['title'], content: entry['content'])
+    }
   end
 
   def self.create(content:, title:)
@@ -21,6 +31,8 @@ class DiaryEntries
       connection = PG.connect(dbname: 'daily_diary_manager')
     end
 
-    connection.exec("INSERT INTO diary_entries (title, content) VALUES('#{title}', '#{content}') RETURNING id, content, title")
+    result = connection.exec("INSERT INTO diary_entries (content, title) VALUES('#{content}', '#{title}') RETURNING id, title, content;")
+
+    DiaryEntries.new(id: result[0]['id'], title: result[0]['title'], content: result[0]['content'])
   end
 end
