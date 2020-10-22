@@ -21,7 +21,7 @@ class DailyDiaryManager < Sinatra::Base
   end
 
   get "/diary_entries/:id" do
-    @diary_entry = DiaryEntries.all.select{ |entry| entry.id == params["id"] }.first
+    @diary_entry = DiaryEntries.selecting(params["id"])
     erb :'diary_entries/view_entry'
   end
 

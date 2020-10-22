@@ -35,4 +35,8 @@ class DiaryEntries
 
     DiaryEntries.new(id: result[0]['id'], title: result[0]['title'], content: result[0]['content'])
   end
+
+  def self.selecting(id)
+    DiaryEntries.all.select { |entry| entry.id == id }.first
+  end
 end
