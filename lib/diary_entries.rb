@@ -37,6 +37,13 @@ class DiaryEntries
   end
 
   def self.selecting(id)
+
+    if ENV['ENVIRONMENT'] == 'test'
+      connection = PG.connect(dbname: 'daily_diary_manager_test')
+    else
+      connection = PG.connect(dbname: 'daily_diary_manager')
+    end
+
     DiaryEntries.all.select { |entry| entry.id == id }.first
   end
 
