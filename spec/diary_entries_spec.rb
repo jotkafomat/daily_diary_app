@@ -34,4 +34,14 @@ describe DiaryEntries do
     end
   end
 
+  describe '.delete' do
+    it 'delete given bookmark' do
+      entry = DiaryEntries.create(content: 'note to delete', title: 'bin note')
+
+      DiaryEntries.delete(id: entry.id)
+
+      expect(DiaryEntries.all.length).to eq 0
+    end
+  end
+
 end

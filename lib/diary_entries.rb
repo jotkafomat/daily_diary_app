@@ -39,4 +39,17 @@ class DiaryEntries
   def self.selecting(id)
     DiaryEntries.all.select { |entry| entry.id == id }.first
   end
+
+  def self.delete(id:)
+
+    if ENV['ENVIRONMENT'] == 'test'
+      connection = PG.connect(dbname: 'daily_diary_manager_test')
+    else
+      connection = PG.connect(dbname: 'daily_diary_manager')
+    end
+
+    connection.exec("DELETE FROM diary_entries WHERE id = #{id}")
+
+  end
+
 end

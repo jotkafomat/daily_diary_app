@@ -28,8 +28,7 @@ class DailyDiaryManager < Sinatra::Base
   end
 
   delete '/diary_entries/:id' do
-    connection = PG.connect(dbname: 'daily_diary_manager_test')
-    connection.exec("DELETE FROM diary_entries WHERE id = #{params['id']}")
+    DiaryEntries.delete(id: params[:id])
     redirect '/diary_entries'
   end
 
