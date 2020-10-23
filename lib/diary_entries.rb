@@ -38,12 +38,6 @@ class DiaryEntries
 
   def self.selecting(id)
 
-    if ENV['ENVIRONMENT'] == 'test'
-      connection = PG.connect(dbname: 'daily_diary_manager_test')
-    else
-      connection = PG.connect(dbname: 'daily_diary_manager')
-    end
-
     DiaryEntries.all.select { |entry| entry.id == id }.first
   end
 
@@ -59,4 +53,14 @@ class DiaryEntries
 
   end
 
+  def self.update(id:, content:, title:)
+    if ENV['ENVIRONMENT'] == 'test'
+      connection = PG.connect(dbname: 'daily_diary_manager_test')
+    else
+      connection = PG.connect(dbname: 'daily_diary_manager')
+    end
+    result = connection.exec("UPDATE diary_entries SET content = '#{content}', title = '#{title}' WHERE id = #{id} RETURNING id, content, title;")
+
+    DiaryEntries.new(id: result[0]['id'], content: result[0]['content'], title: result[0]['title'])
+  end
 end

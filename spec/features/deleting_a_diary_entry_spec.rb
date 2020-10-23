@@ -1,6 +1,6 @@
 feature 'Deleting a diary entry' do
   scenario 'A user can delete a diary entry' do
-    DiaryEntries.create(content:'Thats a content to delete', title: 'note to delete')
+    DiaryEntries.create(content: 'Thats a content to delete', title: 'note to delete')
     visit('/diary_entries')
     expect(page).to have_content "note to delete"
 

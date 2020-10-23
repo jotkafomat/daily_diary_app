@@ -38,8 +38,7 @@ class DailyDiaryManager < Sinatra::Base
   end
 
   patch '/diary_entries/:id' do
-    connection = PG.connect(dbname: 'daily_diary_manager_test')
-    connection.exec("UPDATE diary_entries SET content = '#{params[:content]}', title = '#{params[:title]}' WHERE id = '#{params[:id]}'")
+    DiaryEntries.update(id: params[:id], content: params[:content], title: params[:title])
     redirect('/diary_entries')
   end
 

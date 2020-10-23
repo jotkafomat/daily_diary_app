@@ -44,4 +44,16 @@ describe DiaryEntries do
     end
   end
 
+  describe '.update' do
+    it 'updates the diary_entry with the given data' do
+      diary_entry = DiaryEntries.create(content: 'test diary entry', title: 'Test title')
+      updated_diary_entry = DiaryEntries.update(id: diary_entry.id, content: 'test diary entry updated', title: 'Test title updated')
+
+      expect(updated_diary_entry).to be_a DiaryEntries
+      expect(updated_diary_entry.id). to eq diary_entry.id
+      expect(updated_diary_entry.title).to eq 'Test title updated'
+      expect(updated_diary_entry.content).to eq 'test diary entry updated'
+    end
+  end
+
 end
