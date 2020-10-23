@@ -19,17 +19,12 @@ class DiaryEntries
         title: entry['title'],
         id: entry['id']
       )
-    end  
+    end
   end
 
   def self.create(content:, title:)
-    if ENV['ENVIRONMENT'] == 'test'
-      connection = PG.connect(dbname: 'daily_diary_manager_test')
-    else
-      connection = PG.connect(dbname: 'daily_diary_manager')
-    end
 
-    result = connection.exec("INSERT INTO diary_entries (content, title) VALUES('#{content}', '#{title}') RETURNING id, title, content;")
+    result = DatabaseConnection.query("INSERT INTO diary_entries (content, title) VALUES('#{content}', '#{title}') RETURNING id, title, content;")
 
     DiaryEntries.new(id: result[0]['id'], title: result[0]['title'], content: result[0]['content'])
   end
