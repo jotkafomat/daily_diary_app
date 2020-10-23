@@ -36,13 +36,7 @@ class DiaryEntries
 
   def self.delete(id:)
 
-    if ENV['ENVIRONMENT'] == 'test'
-      connection = PG.connect(dbname: 'daily_diary_manager_test')
-    else
-      connection = PG.connect(dbname: 'daily_diary_manager')
-    end
-
-    connection.exec("DELETE FROM diary_entries WHERE id = #{id}")
+    DatabaseConnection.query("DELETE FROM diary_entries WHERE id = #{id}")
 
   end
 
