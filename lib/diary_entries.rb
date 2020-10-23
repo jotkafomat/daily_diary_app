@@ -1,4 +1,4 @@
-require 'pg'
+require 'database_connection'
 
 class DiaryEntries
 

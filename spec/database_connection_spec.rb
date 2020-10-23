@@ -14,4 +14,13 @@ describe DatabaseConnection do
 
       expect(DatabaseConnection.connection).to eq connection
     end
+
+  describe '.query' do
+    it 'executes a query via PG' do
+      connection = DatabaseConnection.setup('daily_diary_manager_test')
+      expect(connection).to receive(:exec).with("SELECT * FROM diary_entries;")
+
+      DatabaseConnection.query("SELECT * FROM diary_entries;")
+    end
+  end
 end
