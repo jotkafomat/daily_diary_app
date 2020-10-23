@@ -8,5 +8,10 @@ describe DatabaseConnection do
       DatabaseConnection.setup('daily_diary_manager_test')
     end
   end
+    it 'this connection is persistent' do
+      # Grab the connection as a return value from the .setup method
+      connection = DatabaseConnection.setup('daily_diary_manager_test')
 
+      expect(DatabaseConnection.connection).to eq connection
+    end
 end
