@@ -56,4 +56,18 @@ describe DiaryEntries do
     end
   end
 
+  describe '.find' do
+    it 'return the requested diary_entry object' do
+      diary_entry = DiaryEntries.create(content: 'test diary entry', title: 'Test title')
+
+      result = DiaryEntries.find(id: diary_entry.id)
+
+      expect(result).to be_a DiaryEntries
+      expect(result.id).to eq diary_entry.id
+      expect(result.title).to eq 'Test title'
+      expect(result.content).to eq 'test diary entry'
+
+    end
+  end
+
 end

@@ -63,4 +63,16 @@ class DiaryEntries
 
     DiaryEntries.new(id: result[0]['id'], content: result[0]['content'], title: result[0]['title'])
   end
+
+  def self.find(id:)
+    if ENV['ENVIRONMENT'] == 'test'
+      connection = PG.connect(dbname: 'daily_diary_manager_test')
+    else
+      connection = PG.connect(dbname: 'daily_diary_manager')
+    end
+
+    result = connection.exec("SELECT * FROM diary_entries WHERE id = #{id};")
+    DiaryEntries.new(id: result[0]['id'], content: result[0]['content'], title: result[0]['title'])
+  end
+
 end
