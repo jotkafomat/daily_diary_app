@@ -3,10 +3,13 @@
   <li class="diary_entry" id="diary_entry-<%= diary_entry.id %>">
     <a href='/diary_entries/<%= diary_entry.id %>' target="_blank">
       <%= diary_entry.title %>
-    </a>
+    </a><br>
     <form action="/diary_entries/<%= diary_entry.id %>" method="post">
       <input type='hidden' name='_method' value='Delete'/>
     <input type="submit" value="Delete" />
+    </form>
+    <form action="/diary_entries/<%= diary_entry.id %>/edit" method="get">
+      <input type="submit" value="Edit"/>
     </form>
   </li>
 <% end %>

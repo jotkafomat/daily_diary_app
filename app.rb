@@ -32,5 +32,16 @@ class DailyDiaryManager < Sinatra::Base
     redirect '/diary_entries'
   end
 
+  get '/diary_entries/:id/edit' do
+    @diary_entry_id = params[:id]
+    erb :'diary_entries/edit'
+  end
+
+  patch '/diary_entries/:id' do
+    connection = PG.connect(dbname: 'daily_diary_manager_test')
+    connection.exec("UPDATE diary_entries SET content = '#{params[:content]}', title = '#{params[:title]}' WHERE id = '#{params[:id]}'")
+    redirect('/diary_entries')
+  end
+
   run! if app_file == $0
 end
