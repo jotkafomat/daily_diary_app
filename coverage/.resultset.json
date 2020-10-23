@@ -22,23 +22,6 @@
           null
         ]
       },
-      "/Users/kamacbook/Documents/Makers/daily_diary_app/lib/database_connection.rb": {
-        "lines": [
-          1,
-          null,
-          1,
-          null,
-          1,
-          2,
-          null,
-          null,
-          1,
-          1,
-          null,
-          null,
-          null
-        ]
-      },
       "/Users/kamacbook/Documents/Makers/daily_diary_app/spec/diary_entries_spec.rb": {
         "lines": [
           1,
@@ -222,6 +205,6 @@
         ]
       }
     },
-    "timestamp": 1603475676
+    "timestamp": 1603476202
   }
 }
