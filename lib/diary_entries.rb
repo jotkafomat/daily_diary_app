@@ -12,16 +12,14 @@ class DiaryEntries
 
   def self.all
 
-    if ENV['ENVIRONMENT'] == 'test'
-      connection = PG.connect(dbname: 'daily_diary_manager_test')
-    else
-      connection = PG.connect(dbname: 'daily_diary_manager')
-    end
-
-    result = connection.exec("SELECT * FROM diary_entries;")
-    result.map { |entry|
-      DiaryEntries.new(id: entry['id'], title: entry['title'], content: entry['content'])
-    }
+    result = DatabaseConnection.query("SELECT * FROM diary_entries")
+    result.map do |entry|
+      DiaryEntries.new(
+        content: entry['content'],
+        title: entry['title'],
+        id: entry['id']
+      )
+    end  
   end
 
   def self.create(content:, title:)
