@@ -24,7 +24,7 @@ class DailyDiaryManager < Sinatra::Base
   end
 
   get "/diary_entries/:id" do
-    @diary_entry = DiaryEntries.selecting(params[:id])
+    @diary_entry = DiaryEntries.find(id: params[:id])
     erb :'diary_entries/view_entry'
   end
 
