@@ -11,6 +11,9 @@
     <form action="/diary_entries/<%= diary_entry.id %>/edit" method="get">
       <input type="submit" value="Edit"/>
     </form>
+    <form action="/diary_entries/<%= diary_entry.id %>/comments/new" method="get">
+      <input type="submit" value="Add Comment"/>
+    </form>
   </li>
 <% end %>
 </ol>
