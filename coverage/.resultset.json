@@ -113,6 +113,28 @@
           null
         ]
       },
+      "/Users/kamacbook/Documents/Makers/daily_diary_app/spec/features/adding_and_viewing_comments_spec.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null
+        ]
+      },
       "/Users/kamacbook/Documents/Makers/daily_diary_app/spec/features/creating_diary_entries_spec.rb": {
         "lines": [
           1,
@@ -208,6 +230,6 @@
         ]
       }
     },
-    "timestamp": 1603530773
+    "timestamp": 1603532883
   }
 }
