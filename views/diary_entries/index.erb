@@ -14,6 +14,11 @@
     <form action="/diary_entries/<%= diary_entry.id %>/comments/new" method="get">
       <input type="submit" value="Add Comment"/>
     </form>
+    <ul>
+      <% diary_entry.comments.each do |comment| %>
+      <li><%= comment['text'] %></li>
+      <% end %>
+    </ul>
   </li>
 <% end %>
 </ol>

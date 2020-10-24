@@ -43,5 +43,16 @@ class DailyDiaryManager < Sinatra::Base
     redirect('/diary_entries')
   end
 
+  get '/diary_entries/:id/comments/new' do
+    @diary_entry = DiaryEntries.find(id: params[:id])
+    erb :'comments/new'
+  end
+
+  post '/diary_entries/:id/comments' do
+    connection = PG.connect(dbname: 'daily_diary_manager_test')
+    connection.exec("INSERT INTO  comments (text, diary_entry_id) VALUES('#{params[:comment]}', '#{params[:id]}');")
+    redirect '/diary_entries'
+  end
+
   run! if app_file == $0
 end

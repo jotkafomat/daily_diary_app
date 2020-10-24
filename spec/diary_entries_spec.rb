@@ -70,4 +70,15 @@ describe DiaryEntries do
     end
   end
 
+  describe '#comments' do
+    it 'return a list of comments on the diary entry' do
+      diary_entry = DiaryEntries.create(content: 'test diary entry', title: 'Test title')
+      DatabaseConnection.query("INSERT INTO comments (id, text, diary_entry_id) VALUES(1, 'Test comment', #{diary_entry.id})")
+
+      comment = diary_entry.comments.first
+
+      expect(comment['text']).to eq "Test comment"
+    end
+  end
+
 end
