@@ -1,6 +1,6 @@
 require 'sinatra/base'
 require './lib/diary_entries.rb'
-require './database_connection_setup'
+require_relative './database_connection_setup'
 
 class DailyDiaryManager < Sinatra::Base
   enable :sessions, :method_override
