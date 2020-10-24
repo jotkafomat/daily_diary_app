@@ -77,7 +77,18 @@ describe DiaryEntries do
 
       comment = diary_entry.comments.first
 
-      expect(comment['text']).to eq "Test comment"
+      expect(comment.text).to eq "Test comment"
+    end
+  end
+
+  let(:comment_class) { double (:comment_class) }
+
+  describe '#comments' do
+    it 'calls .where on the Comment class' do
+      diary_entry = DiaryEntries.create(content: 'test diary entry', title: 'Test title')
+      expect(comment_class).to receive(:where).with(diary_entry_id: diary_entry.id)
+
+      diary_entry.comments(comment_class)
     end
   end
 

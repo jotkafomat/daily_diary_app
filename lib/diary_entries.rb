@@ -1,4 +1,5 @@
 require_relative 'database_connection'
+require_relative './comment.rb'
 
 class DiaryEntries
 
@@ -53,7 +54,7 @@ class DiaryEntries
     DiaryEntries.new(id: result[0]['id'], content: result[0]['content'], title: result[0]['title'])
   end
 
-  def comments
-    DatabaseConnection.query("SELECT * FROM comments WHERE diary_entry_id = #{id};")
+  def comments(comment_class = Comment)
+    comment_class.where(diary_entry_id: id)
   end
 end
