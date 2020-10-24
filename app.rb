@@ -1,6 +1,8 @@
 require 'sinatra/base'
 require './lib/diary_entries.rb'
 require_relative './database_connection_setup'
+require_relative './lib/comment'
+
 
 class DailyDiaryManager < Sinatra::Base
   enable :sessions, :method_override
@@ -49,9 +51,8 @@ class DailyDiaryManager < Sinatra::Base
   end
 
   post '/diary_entries/:id/comments' do
-    connection = PG.connect(dbname: 'daily_diary_manager_test')
-    connection.exec("INSERT INTO  comments (text, diary_entry_id) VALUES('#{params[:comment]}', '#{params[:id]}');")
-    redirect '/diary_entries'
+    Comment.create(text: params[:comment], diary_entry_id: params[:id])
+      redirect '/diary_entries'
   end
 
   run! if app_file == $0

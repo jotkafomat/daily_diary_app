@@ -1,6 +1,40 @@
 {
   "RSpec": {
     "coverage": {
+      "/Users/kamacbook/Documents/Makers/daily_diary_app/spec/comment_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/kamacbook/Documents/Makers/daily_diary_app/spec/database_helpers.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          2,
+          2,
+          2,
+          null
+        ]
+      },
       "/Users/kamacbook/Documents/Makers/daily_diary_app/spec/database_connection_spec.rb": {
         "lines": [
           1,
@@ -110,17 +144,6 @@
           null,
           null,
           null,
-          null
-        ]
-      },
-      "/Users/kamacbook/Documents/Makers/daily_diary_app/spec/database_helpers.rb": {
-        "lines": [
-          1,
-          null,
-          1,
-          1,
-          1,
-          1,
           null
         ]
       },
@@ -241,6 +264,6 @@
         ]
       }
     },
-    "timestamp": 1603537737
+    "timestamp": 1603545543
   }
 }

@@ -25,7 +25,7 @@ describe DiaryEntries do
     it 'creates a new diary entry' do
       entry = DiaryEntries.create(content: 'test diary entry', title: 'Test title')
 
-      persisted_data = persisted_data(id: entry.id)
+      persisted_data = persisted_data(table: 'diary_entries', id: entry.id)
 
       expect(entry).to be_a DiaryEntries
       expect(entry.id).to eq persisted_data['id']
